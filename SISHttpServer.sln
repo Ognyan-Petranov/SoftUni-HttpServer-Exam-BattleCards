@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{A688A052-3DD6-48AE-B98A-8CA57454B0F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleCards", "BattleCards\BattleCards.csproj", "{FEB158CE-B897-40A8-B90E-53AC134E6359}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIS.HTTP", "SIS.HTTP\SIS.HTTP.csproj", "{3F2DC50B-C6DD-4CF2-B2E4-A0E2EFB60985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIS.MvcFramework", "SIS.MvcFramework\SIS.MvcFramework.csproj", "{AABB0A93-9535-4B14-A625-0D7D264FA366}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEB158CE-B897-40A8-B90E-53AC134E6359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB158CE-B897-40A8-B90E-53AC134E6359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB158CE-B897-40A8-B90E-53AC134E6359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB158CE-B897-40A8-B90E-53AC134E6359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F2DC50B-C6DD-4CF2-B2E4-A0E2EFB60985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F2DC50B-C6DD-4CF2-B2E4-A0E2EFB60985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F2DC50B-C6DD-4CF2-B2E4-A0E2EFB60985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F2DC50B-C6DD-4CF2-B2E4-A0E2EFB60985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AABB0A93-9535-4B14-A625-0D7D264FA366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AABB0A93-9535-4B14-A625-0D7D264FA366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AABB0A93-9535-4B14-A625-0D7D264FA366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AABB0A93-9535-4B14-A625-0D7D264FA366}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FEB158CE-B897-40A8-B90E-53AC134E6359} = {A688A052-3DD6-48AE-B98A-8CA57454B0F6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB9F7E64-9EA7-4302-8CD0-4BD006FD54B3}
+	EndGlobalSection
+EndGlobal
