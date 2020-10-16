@@ -30,6 +30,17 @@ namespace BattleCards.Services
             this.db.SaveChangesAsync();
         }
 
+        public string GetUserId(string username, string password)
+        {
+            var user = db.Users.FirstOrDefault(x => x.Username == username && x.Password == this.GenerateSHA512String(password));
+
+            if (user == null)
+            {
+                return null;
+            }
+            return user.UserId;
+        }
+
         public bool IsValidEmail(string email)
         {
             return this.db.Users.FirstOrDefault(x => x.Email == email) == null;

@@ -1,4 +1,5 @@
-﻿using BattleCards.Services;
+﻿using BattleCards.Migrations;
+using BattleCards.Services;
 using SIS.HTTP;
 using SIS.MvcFramework;
 using System;
@@ -19,6 +20,20 @@ namespace BattleCards.Controllers
         public HttpResponse Login()
         {
             return this.View();
+        }
+
+        [HttpPost]
+        public HttpResponse Login(string username, string password)
+        {
+            string userId = this.usersService.GetUserId(username, password);
+
+            if (userId == null)
+            {
+                return this.Error("Invalid username or password!");
+            }
+
+            this.SignIn(userId);
+            return this.Redirect("/Cards/All");
         }
 
         [HttpGet]
@@ -67,6 +82,13 @@ namespace BattleCards.Controllers
             this.usersService.AddUser(username, email, password);
 
             return this.Redirect("/Users/Login");
+        }
+
+        [HttpPost]
+        public HttpResponse Logout()
+        {
+            this.SignOut();
+            return this.Redirect("/");
         }
     }
 }

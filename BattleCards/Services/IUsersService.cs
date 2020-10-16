@@ -11,5 +11,7 @@ namespace BattleCards.Services
         bool IsValidEmail(string email);
 
         bool IsValidUser(string username);
+
+        string GetUserId(string username, string password);
     }
 }
