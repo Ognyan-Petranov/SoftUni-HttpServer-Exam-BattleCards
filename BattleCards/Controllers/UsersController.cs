@@ -19,12 +19,22 @@ namespace BattleCards.Controllers
         [HttpGet]
         public HttpResponse Login()
         {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
             return this.View();
         }
 
         [HttpPost]
         public HttpResponse Login(string username, string password)
         {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
             string userId = this.usersService.GetUserId(username, password);
 
             if (userId == null)
@@ -39,6 +49,11 @@ namespace BattleCards.Controllers
         [HttpGet]
         public HttpResponse Register()
         {
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
+
             return this.View();
         }
 
@@ -47,7 +62,12 @@ namespace BattleCards.Controllers
         {
             if (this.IsUserSignedIn())
             {
-                return this.Error("User is already registered!");
+                return this.Redirect("/");
+            }
+
+            if (username.Length < 5 || username.Length > 20 || string.IsNullOrEmpty(username))
+            {
+                return this.Error("Invalid input. Username must be between 5 and 20 characters!");
             }
 
             if (password != confirmPassword)
@@ -58,10 +78,6 @@ namespace BattleCards.Controllers
             if (password.Length < 6 || password.Length > 20)
             {
                 return this.Error("Invalid password length! Must be between 6 and 20 characters!");
-            }
-            if (username.Length < 5 || username.Length > 20 || string.IsNullOrEmpty(username))
-            {
-                return this.Error("Invalid input. Username must be between 5 and 20 characters!");
             }
 
             if (string.IsNullOrEmpty(email))
@@ -87,6 +103,11 @@ namespace BattleCards.Controllers
         [HttpGet("/Logout")]
         public HttpResponse Logout()
         {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Error("Log in first, smart ass!");
+            }
+
             this.SignOut();
             return this.Redirect("/");
         }
