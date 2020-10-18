@@ -10,10 +10,12 @@ namespace BattleCards.Services
     public class CardsService : ICardsService
     {
         private readonly ApplicationDbContext db;
+        private readonly IUsersService userService;
 
-        public CardsService(ApplicationDbContext db)
+        public CardsService(ApplicationDbContext db, IUsersService userService)
         {
             this.db = db;
+            this.userService = userService;
         }
 
         public int AddCard(string name, string url, string keyword, int attack, int health, string description)
@@ -49,13 +51,15 @@ namespace BattleCards.Services
 
         public IEnumerable<CardViewModel> GetAllCards()
         {
-            var allCards = this.db.Cards.Select(x => new CardViewModel() { 
-            Name = x.Name,
-            ImageUrl = x.ImageUrl,
-            Keyword = x.Keyword,
-            Attack = x.Attack,
-            Health = x.Health,
-            Description = x.Description
+            var allCards = this.db.Cards.Select(x => new CardViewModel()
+            {
+                CardId = x.CardId,
+                Name = x.Name,
+                ImageUrl = x.ImageUrl,
+                Keyword = x.Keyword,
+                Attack = x.Attack,
+                Health = x.Health,
+                Description = x.Description
             }).ToList();
 
             return allCards;
@@ -66,6 +70,8 @@ namespace BattleCards.Services
             var allUserCards = this.db.UserCards.Where(x => x.UserId == id)
                 .Select(x => new CardViewModel()
                 {
+
+                    CardId = x.Card.CardId,
                     Name = x.Card.Name,
                     ImageUrl = x.Card.ImageUrl,
                     Keyword = x.Card.Keyword,
@@ -75,6 +81,18 @@ namespace BattleCards.Services
                 }).ToList();
 
             return allUserCards;
+        }
+
+        public void RemoveCardFromUserCollection(string userId, int cardId)
+        {
+            var userCard = this.db.UserCards.FirstOrDefault(x => x.UserId == userId && x.CardId == cardId);
+            if (userCard == null)
+            {
+                return;
+            }
+
+            this.db.UserCards.Remove(userCard);
+            this.db.SaveChanges();
         }
     }
 }

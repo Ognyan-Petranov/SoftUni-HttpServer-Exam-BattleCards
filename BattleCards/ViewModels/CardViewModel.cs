@@ -6,7 +6,7 @@ namespace BattleCards.ViewModels
 {
     public class CardViewModel
     {
-        public int Id { get; set; }
+        public int CardId { get; set; }
 
         public string ImageUrl { get; set; }
 

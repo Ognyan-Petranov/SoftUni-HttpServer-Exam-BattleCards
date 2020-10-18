@@ -93,5 +93,29 @@ namespace BattleCards.Controllers
             var cardsViewModel = this.cardsService.GetAllCardsByUser(this.GetUserId());
             return this.View(cardsViewModel);
         }
+
+        public HttpResponse AddToCollection(int cardId)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
+            var userId = this.GetUserId();
+            this.cardsService.AddCardToUserCollection(userId, cardId);
+            return this.Redirect("/Cards/All");
+        }
+       
+        public HttpResponse RemoveFromCollection(int cardId)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
+            var userId = this.GetUserId();
+            this.cardsService.RemoveCardFromUserCollection(userId, cardId);
+            return this.Redirect("/Cards/Collection");
+        }
     }
 }
